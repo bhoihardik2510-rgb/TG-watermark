@@ -1,12 +1,13 @@
 import os
 import asyncio
-import os
-os.makedirs("downloads", exist_ok=True)
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from configs import Config
 from core.ffmpeg import add_watermark
 from core.clean import delete_all
+
+# 👇 YE ADD KARO
+os.makedirs("downloads", exist_ok=True)
 
 bot = Client("watermark_bot", bot_token=Config.BOT_TOKEN, api_id=Config.API_ID, api_hash=Config.API_HASH)
 user_settings = {}
