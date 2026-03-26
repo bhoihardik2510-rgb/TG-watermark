@@ -1,9 +1,12 @@
 import subprocess
 import asyncio
 
-async def add_watermark(video_path, watermark_path, output_path, position=(10, 10), size=100, quality=23):
+async def add_watermark(video_path, watermark_path, output_path, position=(10, 10), size=20, quality=23):
     x, y = position
-    scale = f"iw*{size/100}:-1" if size != 100 else "iw"
+    
+    # ✅ FIXED SCALE (kabhi bhi sirf 'iw' nahi hoga)
+    scale = f"iw*{size/100}:-1"
+
     command = [
         "ffmpeg",
         "-i", video_path,
@@ -15,5 +18,9 @@ async def add_watermark(video_path, watermark_path, output_path, position=(10, 1
         "-codec:a", "copy",
         output_path
     ]
+
     process = await asyncio.create_subprocess_exec(*command)
     await process.communicate()
+
+    # ✅ SUCCESS CHECK
+    return process.returncode == 0
