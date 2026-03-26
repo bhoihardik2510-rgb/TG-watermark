@@ -1,5 +1,7 @@
 import os
 import asyncio
+import os
+os.makedirs("downloads", exist_ok=True)
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from configs import Config
